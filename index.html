@@ -205,14 +205,35 @@
             $await(moveAnimate());
 
             textAnimate().start();
+  var birds = [
+                {x: 100, y: 100},
+                {x: 300, y: 150},
+                {x: 500, y: 200},
+                {x: 700, y: 120}
+            ];
+
+            var ctx = canvas[0].getContext('2d');
+            birds.forEach(function(bird) {
+                drawBird(ctx, bird.x, bird.y);
+            });
 
             $await(jumpAnimate());
-            var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
-
-    
-    
         }));
+
+        // Thêm hàm để vẽ chim
+        function drawBird(ctx, x, y) {
+            ctx.beginPath();
+            ctx.strokeStyle = "white";
+            ctx.lineWidth = 2;
+
+            // Cánh trái
+            ctx.arc(x - 5, y, 10, 0, Math.PI, false);
+
+            // Cánh phải
+            ctx.arc(x + 5, y, 10, Math.PI, 0, false);
+
+            ctx.stroke();
+        }
 
         runAsync().start();
     })();
