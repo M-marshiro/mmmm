@@ -11,6 +11,7 @@
     <script type="text/javascript" src="./css/jscex-async-powerpack.min.js"></script>
     <script type="text/javascript" src="./css/functions.js" charset="utf-8"></script>
     <script type="text/javascript" src="./css/love.js" charset="utf-8"></script>
+    <script type="text/javascript" src="bird.js" charset="utf-8"></script>
       <style type="text/css">
 <!--
 .STYLE1 {color: #666666}
@@ -205,6 +206,14 @@
             textAnimate().start();
 
             $await(jumpAnimate());
+            var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    
+    tree.draw();
+
+    // Vẽ chim
+    drawBird(ctx, 100, 100);
         }));
 
         runAsync().start();
