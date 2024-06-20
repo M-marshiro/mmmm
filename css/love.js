@@ -227,47 +227,7 @@
         this.initFooter();
         this.initBranch();
         this.initBloom();
-        Tree.prototype.initBirds = function() {
-    this.birds = [];
-};
-
-// Phương thức addBird: Thêm một con chim vào cây
-Tree.prototype.addBird = function(startPoint, speed) {
-    var bird = new Bird(this, startPoint, speed);
-    this.birds.push(bird);
-};
-
-// Phương thức removeBird: Xóa một con chim khỏi cây
-Tree.prototype.removeBird = function(bird) {
-    var index = this.birds.indexOf(bird);
-    if (index !== -1) {
-        this.birds.splice(index, 1);
-    }
-};
-
-// Phương thức drawBirds: Vẽ tất cả các chim trong mảng birds
-Tree.prototype.drawBirds = function() {
-    var birds = this.birds;
-    for (var i = 0; i < birds.length; i++) {
-        var bird = birds[i];
-        bird.draw();
-    }
-};
-
-// Phương thức moveBirds: Di chuyển tất cả các chim trong mảng birds
-Tree.prototype.moveBirds = function() {
-    var birds = this.birds;
-    for (var i = 0; i < birds.length; i++) {
-        var bird = birds[i];
-        bird.move();
-        if (i % 2 === 0) bird.flapWings();
-        // Ví dụ:  để cánh vỗ xen kẽ
-        if (!bird.isVisible()) {
-            this.removeBird(bird);
-            i--;
-        }
-    }
-};
+      
       
         
     }
