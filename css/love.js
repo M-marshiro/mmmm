@@ -227,7 +227,6 @@
         this.initFooter();
         this.initBranch();
         this.initBloom();
-        this.birds = [];
         Tree.prototype.initBirds = function() {
     this.birds = [];
 };
