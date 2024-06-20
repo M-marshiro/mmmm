@@ -35,7 +35,7 @@
 <span class="say">Chúc bạn có nhiều thuận lợi trong sự nghiệp。</span><br><br>
 <span class="say">Hãy trở thành con người mà bạn mong muốn nhé。</span><br><br>
 <span class="say"><span class="space"></span> -- Marshiro--</span><br>
-<span class="say"><h1>SINH NHẬT VUI VẺ!!!</h1></span><br>
+<span class="say"><h1>SINH NHẬT VUI VẺ NHÉ!!!</h1></span><br>
         </font>
       </div>
                 </div>
@@ -164,7 +164,7 @@
             foot.draw();
             tree.snapshot("p2", 500, 0, 610, 680);
 
-            // 会有闪烁不得意这样做, (＞﹏＜)
+            
             canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
             canvas.css("background", "#ffe");
             $await(Jscex.Async.sleep(300));
@@ -210,10 +210,7 @@
     var ctx = canvas.getContext('2d');
 
     
-    tree.draw();
-
-    // Vẽ chim
-    drawBird(ctx, 100, 100);
+    
         }));
 
         runAsync().start();
