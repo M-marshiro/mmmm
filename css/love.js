@@ -227,6 +227,50 @@
         this.initFooter();
         this.initBranch();
         this.initBloom();
+        this.birds = [];
+        Tree.prototype.initBirds = function() {
+    this.birds = [];
+};
+
+// Phương thức addBird: Thêm một con chim vào cây
+Tree.prototype.addBird = function(startPoint, speed) {
+    var bird = new Bird(this, startPoint, speed);
+    this.birds.push(bird);
+};
+
+// Phương thức removeBird: Xóa một con chim khỏi cây
+Tree.prototype.removeBird = function(bird) {
+    var index = this.birds.indexOf(bird);
+    if (index !== -1) {
+        this.birds.splice(index, 1);
+    }
+};
+
+// Phương thức drawBirds: Vẽ tất cả các chim trong mảng birds
+Tree.prototype.drawBirds = function() {
+    var birds = this.birds;
+    for (var i = 0; i < birds.length; i++) {
+        var bird = birds[i];
+        bird.draw();
+    }
+};
+
+// Phương thức moveBirds: Di chuyển tất cả các chim trong mảng birds
+Tree.prototype.moveBirds = function() {
+    var birds = this.birds;
+    for (var i = 0; i < birds.length; i++) {
+        var bird = birds[i];
+        bird.move();
+        if (i % 2 === 0) bird.flapWings();
+        // Ví dụ:  để cánh vỗ xen kẽ
+        if (!bird.isVisible()) {
+            this.removeBird(bird);
+            i--;
+        }
+    }
+};
+      
+        
     }
     Tree.prototype = {
         initSeed: function() {
@@ -269,6 +313,7 @@
             this.bloomsCache = cache;
         },
 
+        
         toDataURL: function(type) {
             return this.canvas.toDataURL(type);
         },
@@ -521,6 +566,46 @@
             }
         }
     }
+// Thêm sau các lớp hiện có trong tệp love.js
+
+Bird = function(tree, startPoint, speed) {
+    this.tree = tree;
+    this.point = startPoint.clone(); // Vị trí ban đầu của chim
+    this.speed = speed || 2; // Tốc độ di chuyển của chim
+    this.wingsFlap = false; // Biến để điều khiển cánh vỗ
+    this.image = new Image(); // Đối tượng hình ảnh chim
+    this.image.src = 'path_to_bird_image'; // Đường dẫn đến hình ảnh chim
+    this.imageWidth = 50; // Độ rộng của hình ảnh chim
+    this.imageHeight = 50; // Độ cao của hình ảnh chim
+    this.angle = 0; // Góc quay của chim (nếu cần)
+};
+
+Bird.prototype = {
+    draw: function() {
+        var ctx = this.tree.ctx;
+        ctx.save();
+        ctx.translate(this.point.x, this.point.y);
+        ctx.drawImage(this.image, -this.imageWidth / 2, -this.imageHeight / 2, this.imageWidth, this.imageHeight);
+        ctx.restore();
+    },
+
+    move: function() {
+        // Di chuyển chim
+        this.point.x += this.speed;
+    },
+
+    flapWings: function() {
+        // Đổi trạng thái cánh vỗ
+        this.wingsFlap = !this.wingsFlap;
+        // Cập nhật hình ảnh chim nếu cần
+        // Có thể thay đổi hình ảnh chim theo trạng thái cánh vỗ
+    },
+
+    isVisible: function() {
+        // Kiểm tra xem chim có còn hiển thị trên màn hình không
+        return this.point.x < this.tree.width;
+    }
+};
 
     window.random = random;
     window.bezier = bezier;
