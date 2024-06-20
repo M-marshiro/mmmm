@@ -153,66 +153,6 @@
                 $await(Jscex.Async.sleep(10));
             } while (tree.canFlower());
         }));
-var windEffect = eval(Jscex.compile("async", function () {
-            var ctx = tree.ctx;
-            var flowers = tree.flowers;
-            var windSpeed = 5; // Tốc độ gió
-
-            for (var i = 0; i < flowers.length; i++) {
-                var flower = flowers[i];
-                flower.x += windSpeed * Math.random();
-                flower.y -= windSpeed * Math.random();
-            }
-
-            while (flowers.some(f => f.x < width && f.y > 0)) {
-                ctx.clearRect(0, 0, width, height);
-                flowers.forEach(function(flower) {
-                    flower.x += windSpeed * Math.random();
-                    flower.y -= windSpeed * Math.random();
-                    if (flower.x < width && flower.y > 0) {
-                        tree.drawFlower(flower);
-                    }
-                });
-                foot.draw();
-                $await(Jscex.Async.sleep(10));
-            }
-        }));
-
-        var formText = eval(Jscex.compile("async", function () {
-            var ctx = tree.ctx;
-            var text = "Sinh Nhật Vui Vẻ";
-            var fontSize = 36;
-            ctx.font = fontSize + "px Arial";
-            ctx.fillStyle = "#FF69B4";
-
-            var textWidth = ctx.measureText(text).width;
-            var startX = (width - textWidth) / 2;
-            var startY = height / 2;
-
-            var flowers = tree.flowers;
-            var targetFlowers = [];
-
-            for (var i = 0; i < flowers.length; i++) {
-                var flower = flowers[i];
-                var x = startX + (i % textWidth) * (fontSize / 2);
-                var y = startY + Math.floor(i / textWidth) * (fontSize * 1.5);
-                targetFlowers.push({ x: x, y: y });
-            }
-
-            while (targetFlowers.some((tf, i) => flowers[i].x !== tf.x || flowers[i].y !== tf.y)) {
-                ctx.clearRect(0, 0, width, height);
-                flowers.forEach((flower, i) => {
-                    var tf = targetFlowers[i];
-                    flower.x += (tf.x - flower.x) * 0.05;
-                    flower.y += (tf.y - flower.y) * 0.05;
-                    tree.drawFlower(flower);
-                });
-                foot.draw();
-                $await(Jscex.Async.sleep(30));
-            }
-
-            $("#message").fadeIn(2000);
-        }));
 
         var moveAnimate = eval(Jscex.compile("async", function () {
             tree.snapshot("p1", 240, 0, 610, 680);
@@ -261,8 +201,7 @@ var windEffect = eval(Jscex.compile("async", function () {
             $await(growAnimate());
             $await(flowAnimate());
             $await(moveAnimate());
-            $await(windEffect());
-            $await(formText());
+         
             textAnimate().start();
 
             $await(jumpAnimate());
