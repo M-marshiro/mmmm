@@ -53,9 +53,6 @@
     }
 
     Heart = function() {
-        // x = 16 sin^3 t
-        // y = 13 cos t - 5 cos 2t - 2 cos 3t - cos 4t
-        // http://www.wolframalpha.com/input/?i=x+%3D+16+sin%5E3+t%2C+y+%3D+(13+cos+t+-+5+cos+2t+-+2+cos+3t+-+cos+4t)
         var points = [], x, y, t;
         for (var i = 10; i < 30; i += 0.2) {
             t = i / Math.PI;
@@ -163,13 +160,13 @@
             ctx.scale(scale, scale);
             ctx.moveTo(0, 0);
     	    ctx.lineTo(15, 15);
-    	    ctx.lineTo(60, 15);
+    	    ctx.lineTo(70, 15);
             ctx.stroke();
 
             ctx.moveTo(0, 0);
             ctx.scale(0.75, 0.75);
             ctx.font = "12px 微软雅黑,Verdana"; // 字号肿么没有用? (ˉ(∞)ˉ)
-            ctx.fillText("Come Baby", 23, 10);
+            ctx.fillText("Chạm vào đi", 23, 10);
             ctx.restore();
         },
         clear: function() {
