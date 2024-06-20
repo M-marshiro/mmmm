@@ -11,7 +11,7 @@
     <script type="text/javascript" src="./css/jscex-async-powerpack.min.js"></script>
     <script type="text/javascript" src="./css/functions.js" charset="utf-8"></script>
     <script type="text/javascript" src="./css/love.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./css/bird.js" charset="utf-8"></script>
+   
       <style type="text/css">
 <!--
 .STYLE1 {color: #666666}
@@ -56,6 +56,38 @@
     </script>
 
     <script>
+        $(document).ready(function() {
+        var canvas = document.getElementById('canvas');
+        var width = canvas.width;
+        var height = canvas.height;
+
+        // Initialize the tree and birds
+        var tree = new Tree(canvas, width, height, {
+            // Các tùy chọn cho cây (seed, branch, bloom, ...)
+        });
+
+        tree.initBirds(); // Khởi tạo mảng birds
+
+        // Thêm chim vào cây
+        // Ví dụ: Thêm một con chim với vị trí khởi đầu và tốc độ
+        tree.addBird(new Point(100, 100), 2);
+        // Thêm chim khác nếu cần
+
+        // Hàm animate để vẽ và cập nhật trạng thái của cây và chim
+        function animate() {
+            requestAnimationFrame(animate);
+            tree.grow(); // Mọc cây
+            tree.draw(); // Vẽ cây
+
+            tree.moveBirds(); // Di chuyển chim
+            tree.drawBirds(); // Vẽ chim
+
+            // Các thao tác khác nếu cần...
+
+        }
+
+        animate(); // Bắt đầu vòng lặp animate
+    });
     (function(){
         var canvas = $('#canvas');
     
