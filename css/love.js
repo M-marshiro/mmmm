@@ -525,46 +525,8 @@
             }
         }
     }
-// Thêm sau các lớp hiện có trong tệp love.js
 
-Bird = function(tree, startPoint, speed) {
-    this.tree = tree;
-    this.point = startPoint.clone(); // Vị trí ban đầu của chim
-    this.speed = speed || 2; // Tốc độ di chuyển của chim
-    this.wingsFlap = false; // Biến để điều khiển cánh vỗ
-    this.image = new Image(); // Đối tượng hình ảnh chim
-    this.image.src = 'path_to_bird_image'; // Đường dẫn đến hình ảnh chim
-    this.imageWidth = 50; // Độ rộng của hình ảnh chim
-    this.imageHeight = 50; // Độ cao của hình ảnh chim
-    this.angle = 0; // Góc quay của chim (nếu cần)
-};
 
-Bird.prototype = {
-    draw: function() {
-        var ctx = this.tree.ctx;
-        ctx.save();
-        ctx.translate(this.point.x, this.point.y);
-        ctx.drawImage(this.image, -this.imageWidth / 2, -this.imageHeight / 2, this.imageWidth, this.imageHeight);
-        ctx.restore();
-    },
-
-    move: function() {
-        // Di chuyển chim
-        this.point.x += this.speed;
-    },
-
-    flapWings: function() {
-        // Đổi trạng thái cánh vỗ
-        this.wingsFlap = !this.wingsFlap;
-        // Cập nhật hình ảnh chim nếu cần
-        // Có thể thay đổi hình ảnh chim theo trạng thái cánh vỗ
-    },
-
-    isVisible: function() {
-        // Kiểm tra xem chim có còn hiển thị trên màn hình không
-        return this.point.x < this.tree.width;
-    }
-};
 
     window.random = random;
     window.bezier = bezier;
